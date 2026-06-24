@@ -1,8 +1,19 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, Session
 
-app = FastAPI()
+from pydantic import BaseModel
+from typing import Optional, List
+
+
+app = FastAPI(title="My first app")
+
+engine = create_engine("sqlite:///users.db")
 
 @app.get("/")
 def root():
-    return {"message": "UniFlowery API running"}
+    return {"message":"Hi there!!!"}
+
+
 
